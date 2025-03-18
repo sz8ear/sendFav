@@ -13,13 +13,14 @@ document.body.appendChild(renderer.domElement);
 const composer = new EffectComposer(renderer);
 const renderPass = new RenderPass(scene, camera);
 composer.addPass(renderPass);
-const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, // 強さ
-0.4, // 半径
-0.85 // しきい値
+// 🔥 UnrealBloomPass（光の広がり）
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, // ⭐️ 強さ（光の強さ）
+0.4, // ⭐️ 半径（光の広がり）
+0.85 // ⭐️ しきい値（どの明るさから光るか）
 );
 composer.addPass(bloomPass);
-// 環境光
-const light = new THREE.AmbientLight(0xffffff, 1);
+// 環境光（少し控えめ）
+const light = new THREE.AmbientLight(0xffffff, 0.3);
 scene.add(light);
 // 星の数を設定
 const STAR_COUNT = 100;
@@ -28,14 +29,37 @@ const stars = [];
 const starFiles = [
     "/star_light_blue.glb",
     "/star_pink.glb",
-    "/star_yellow.glb",
+    "/star_purple.glb",
 ];
 const loader = new GLTFLoader();
-// ⭐️ 3種類の星をロード
 const starModels = [];
 starFiles.forEach((file, index) => {
     loader.load(file, (gltf) => {
-        starModels[index] = gltf.scene;
+        const star = gltf.scene;
+        // ⭐️ 既存のマテリアルを維持しつつ発光を適用（全ての星に適用）
+        star.traverse((child) => {
+            if (child.isMesh) {
+                const mesh = child;
+                const originalMaterial = mesh.material;
+                if (originalMaterial) {
+                    const glowingMaterial = new THREE.MeshStandardMaterial({
+                        color: originalMaterial.color,
+                        emissive: originalMaterial.color, // ⭐️ 元の色を活かして発光
+                        emissiveIntensity: file.includes("purple")
+                            ? 6.5
+                            : file.includes("pink")
+                                ? 1.9
+                                : 1.4, // ⭐️ 発光強度を上げる
+                        metalness: 0, // ⭐️ メタル感をなくす
+                        roughness: 0.5, // ⭐️ 反射を少し持たせる
+                        transparent: true,
+                        opacity: 1.0,
+                    });
+                    mesh.material = glowingMaterial;
+                }
+            }
+        });
+        starModels[index] = star;
         // 全ての星がロードされたらシーンに追加
         if (starModels.length === starFiles.length) {
             createStars();
@@ -83,10 +107,3 @@ function animate() {
     composer.render();
 }
 animate();
-// ウィンドウサイズ変更時の対応
-window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    composer.setSize(window.innerWidth, window.innerHeight);
-});
