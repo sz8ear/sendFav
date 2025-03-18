@@ -7,15 +7,60 @@
     <link rel="stylesheet" href="./src/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap&text=sendFav"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <div id="container">
       <h1>sendFav</h1>
+      <p
+        id="typing-text"
+        data-text="あなたの「いいね」を保持できるシステム。気軽に「いいね！」を残せる、新しいカタチ！誰かに「いいね！」をもらえると嬉しい。でも、多くのサイトではログインしないと「いいね！」ができなかったり、手間がかかることも…。SendFavならログイン不要！すぐに「いいね！」を押せる！あなたの「いいね！」を保持して、いつでも見返せるシンプル＆スムーズ！どんなサイトにも設置可能「いいね！」をもっと自由に。今すぐ、あなたの気持ちを気軽にシェアしませんか？"
+      ></p>
+
+      <!-- 🔥 scriptタグを最初は非表示 -->
+      <div class="script-section">
+        <script
+          data-script="sendfav"
+          data-id="fav"
+          src="https://sendfav.8ear.org/sendfav.js"
+        ></script>
+      </div>
+
+      <div class="code-section">
+        <div class="code-container">
+          <pre><code id="code-block">&lt;script data-script="sendfav" data-id="fav" src="https://sendfav.8ear.org/sendfav.js"&gt;&lt;/script&gt;</code></pre>
+          <button class="copy-button" onclick="copyCode()">
+            <img src="./copy.svg" alt="コピー" class="copy-icon" />
+          </button>
+          <span id="copy-message" class="copy-message">copy!</span>
+        </div>
+      </div>
     </div>
-    <script type="module" src="./dist/main.js"></script>
+
+    <script type="module" src="./src/main.ts"></script>
+    <script src="./src/typing.js"></script>
+    <script>
+      function copyCode() {
+        const codeBlock = document.getElementById("code-block").innerText;
+        navigator.clipboard.writeText(codeBlock).then(() => {
+          const message = document.getElementById("copy-message");
+          message.style.display = "block";
+          setTimeout(() => {
+            message.style.display = "none";
+          }, 1500);
+        });
+      }
+
+      function copyCode() {
+        const codeBlock = document.getElementById("code-block").innerText;
+        navigator.clipboard.writeText(codeBlock).then(() => {
+          const message = document.getElementById("copy-message");
+          message.classList.add("show"); // メッセージを表示
+
+          setTimeout(() => {
+            message.classList.remove("show"); // フェードアウト
+          }, 1500);
+        });
+      }
+    </script>
   </body>
 </html>
