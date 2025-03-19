@@ -43,21 +43,10 @@
         const codeBlock = document.getElementById("code-block").innerText;
         navigator.clipboard.writeText(codeBlock).then(() => {
           const message = document.getElementById("copy-message");
-          message.style.display = "block";
-          setTimeout(() => {
-            message.style.display = "none";
-          }, 1500);
-        });
-      }
-
-      function copyCode() {
-        const codeBlock = document.getElementById("code-block").innerText;
-        navigator.clipboard.writeText(codeBlock).then(() => {
-          const message = document.getElementById("copy-message");
-          message.classList.add("show"); // メッセージを表示
+          message.classList.add("show");
 
           setTimeout(() => {
-            message.classList.remove("show"); // フェードアウト
+            message.classList.remove("show");
           }, 1500);
         });
       }
