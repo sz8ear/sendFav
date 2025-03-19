@@ -46,9 +46,9 @@ const stars: {
 
 // ⭐️ ロードする星のファイルリスト
 const starFiles = [
-  "/src/assets/star_light_blue.glb",
-  "/src/assets/star_pink.glb",
-  "/src/assets/star_purple.glb",
+  "/star_light_blue.glb",
+  "/star_pink.glb",
+  "/star_purple.glb",
 ];
 
 const loader = new GLTFLoader();
