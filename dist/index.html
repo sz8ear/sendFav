@@ -32,14 +32,14 @@
           <button class="copy-button" onclick="copyCode()">
             <img src="/copy.svg" alt="コピー" class="copy-icon" />
           </button>
-          <span id="copy-message" class="copy-message">copy!</span>
+          <span id="copy-message" class="copy-message">copied!</span>
         </div>
       </div>
     </div>
 
     <script>
       function copyCode() {
-        const codeBlock = document.getElementById("code-block").innerText;
+        const codeBlock = document.getElementById("code-block").textContent;
         navigator.clipboard.writeText(codeBlock).then(() => {
           const message = document.getElementById("copy-message");
           message.classList.add("show");
