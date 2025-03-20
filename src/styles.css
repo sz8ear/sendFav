@@ -3,15 +3,11 @@
 
 body {
   margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
 #container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 520px;
   padding: 20px 40px;
   font-size: 2rem;
   color: white;
@@ -21,7 +17,28 @@ body {
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+@media (max-width: 520px) {
+  #container {
+    padding: 5px 10px;
+  }
+}
+
+#container-wrap {
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px;
+  max-width: 100%;
   text-align: center;
+  box-sizing: border-box;
+  height: 100vh;
 }
 
 h1 {
@@ -33,12 +50,24 @@ h1 {
   text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
 }
 
+@media (max-width: 520px) {
+  h1 {
+    font-size: 32px;
+  }
+}
+
 p {
   font-size: 18px;
   text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
   font-family: "DotGothic16", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+@media (max-width: 520px) {
+  p {
+    font-size: 16px;
+  }
 }
 
 /* タイピング中のカーソル（点滅） */
@@ -74,6 +103,12 @@ p::after {
   border: 1px solid #ddd;
   display: inline-block;
   width: 60%;
+}
+
+@media (max-width: 520px) {
+  .code-container {
+    width: 100%;
+  }
 }
 
 pre {

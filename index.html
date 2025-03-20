@@ -9,33 +9,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
-    <div id="container">
-      <h1>sendFav</h1>
-      <p
-        id="typing-text"
-        data-text="あなたの「いいね」を保持できるシステム。気軽に「いいね！」を残せる、新しいカタチ！誰かに「いいね！」をもらえると嬉しい。でも、多くのサイトではログインしないと「いいね！」ができなかったり、手間がかかることも…。SendFavならログイン不要！すぐに「いいね！」を押せる！あなたの「いいね！」を保持して、いつでも見返せるシンプル＆スムーズ！どんなサイトにも設置可能「いいね！」をもっと自由に。今すぐ、あなたの気持ちを気軽にシェアしませんか？"
-      ></p>
+    <div id="container-wrap">
+      <div id="container">
+        <h1>sendFav</h1>
+        <p
+          id="typing-text"
+          data-text="あなたの「いいね」を保持できるシステム。気軽に「いいね！」を残せる、新しいカタチ！誰かに「いいね！」をもらえると嬉しい。でも、多くのサイトではログインしないと「いいね！」ができなかったり、手間がかかることも…。sendFavならログイン不要！すぐに「いいね！」を押せる！あなたの「いいね！」を保持して、いつでも見返せるシンプル＆スムーズ！どんなサイトにも設置可能「いいね！」をもっと自由に。今すぐ、あなたの気持ちを気軽にシェアしませんか？"
+        ></p>
 
-      <!-- 🔥 scriptタグを最初は非表示 -->
-      <div class="script-section">
-        <script
-          data-script="sendfav"
-          data-id="fav"
-          src="https://sendfav.8ear.org/sendfav.js"
-        ></script>
-      </div>
+        <div class="script-section">
+          <script
+            data-script="sendfav"
+            data-id="fav"
+            src="https://sendfav.8ear.org/sendfav.js"
+          ></script>
+        </div>
 
-      <div class="code-section">
-        <div class="code-container">
-          <pre><code id="code-block">&lt;script data-script="sendfav" data-id="fav" src="https://sendfav.8ear.org/sendfav.js"&gt;&lt;/script&gt;</code></pre>
-          <button class="copy-button" onclick="copyCode()">
-            <img src="/copy.svg" alt="コピー" class="copy-icon" />
-          </button>
-          <span id="copy-message" class="copy-message">copied!</span>
+        <div class="code-section">
+          <div class="code-container">
+            <pre><code id="code-block">&lt;script data-script="sendfav" data-id="fav" src="https://sendfav.8ear.org/sendfav.js"&gt;&lt;/script&gt;</code></pre>
+            <button class="copy-button" onclick="copyCode()">
+              <img src="/copy.svg" alt="コピー" class="copy-icon" />
+            </button>
+            <span id="copy-message" class="copy-message">copied!</span>
+          </div>
         </div>
       </div>
     </div>
-
     <script type="module" src="./src/main.ts"></script>
     <script type="module" src="./src/typing.ts"></script>
     <script>

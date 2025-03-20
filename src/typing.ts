@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         typingElement.innerHTML = text.substring(0, index + 1);
       }
       index++;
-      setTimeout(type, 100); // タイピング速度を調整
+      setTimeout(type, 50); // タイピング速度を調整
     } else {
       if (scriptContainer) {
         scriptContainer.classList.add("show"); // script タグを表示
