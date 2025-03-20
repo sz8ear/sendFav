@@ -37,8 +37,13 @@ body {
   width: 520px;
   max-width: 100%;
   text-align: center;
-  box-sizing: border-box;
-  height: 100vh;
+}
+
+@media (max-width: 520px) {
+  #container-wrap {
+    box-sizing: border-box;
+    height: 100vh;
+  }
 }
 
 h1 {
